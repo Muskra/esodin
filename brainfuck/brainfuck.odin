@@ -9,7 +9,7 @@ interpret :: proc(code: []u8) {
     tape_pos: u8
     code_pos: u8
 
-    for tape_pos >= 0 || code_pos < cast(u8)len(code) {
+    for code_pos <= cast(u8)len(code) {
         switch code[code_pos] {
             case '>':
                 if tape_pos == 255 {
@@ -24,7 +24,7 @@ interpret :: proc(code: []u8) {
                     tape_pos -= 1
                 }
             case '+':
-                if len(tape) == 255 {
+                if tape[tape_pos] == 255 {
                     tape[tape_pos] = 0
                 } else {
                     tape[tape_pos] += 1
@@ -36,7 +36,7 @@ interpret :: proc(code: []u8) {
                     tape[tape_pos] -= 1
                 }
             case '.':
-                fmt.printf("%c", tape[tape_pos])
+               fmt.printf("%c", tape[tape_pos])
             case ',':
                 input := user_input()
                 break
