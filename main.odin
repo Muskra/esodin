@@ -2,7 +2,7 @@ package main
 
 import "core:fmt"
 import "core:os"
-import "brainfuck"
+import "interpreter"
 
 main :: proc() {
 
@@ -44,7 +44,7 @@ file_scanner :: proc(path: string) {
     defer delete(bytes)
     
     // must execute brainfuck here
-    brainfuck.interpret(bytes)
+    interpreter.interpret(bytes)
 }
 
 argument_help :: proc() {
