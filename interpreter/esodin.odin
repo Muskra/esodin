@@ -34,18 +34,18 @@ interpret :: proc(command: []u8) {//, command_pos: ^int) {
                     }
                 }
             case '.':
-                fmt.print(tape[tape_pos])
+                fmt.printf("%r", tape[tape_pos])
             case '$':
                 for value, index in tape {
                     fmt.println(index,"->", value)
                 }
             case '[':
-                begin_loop_pos = command_pos + 1
+                begin_loop_pos = command_pos
             case ']':
                 if tape[tape_pos] != 0 {
                     after_loop_pos = command_pos + 1
                     command_pos = begin_loop_pos
-                } else {
+                }else {
                     command_pos = after_loop_pos
                 }
         }
