@@ -34,7 +34,7 @@ interpret :: proc(command: []u8) {//, command_pos: ^int) {
                     }
                 }
             case '.':
-                fmt.printf("%r", tape[tape_pos])
+                fmt.printf("%r", cast(rune)tape[tape_pos])
             case '$':
                 for value, index in tape {
                     fmt.println(index,"->", value)
